@@ -1,0 +1,40 @@
+TruePuppet:
+192.168.137.74
+master.truepuppet.io
+
+TruePuppetClient:
+192.168.137.128
+client.truepuppet.io
+
+
+puppet --version
+puppet agent -t
+ping master.puppet5.io
+puppet agent -t --debug --verbose
+puppet agent --fingerprint
+puppet agent -t --server=master.puppet5.io --debug
+
+Windows
+Hosts: 192.168.137.75 master.puppet5.io
+192.168.137.150 client.puppet5.io
+
+[main]
+server=192.168.137.75
+autoflush=true
+***
+***
+environment=production
+
+site.pp
+node 'default' {
+	file { 'c:\Users\Administrator\Desktop\yeet.txt':
+	ensure => present,
+	content => 'Hello World!'
+}
+}
+
+nano puppet.conf (LINUX)
+[main]
+dns_alt_names = master.puppet5.io
+[agent]
+server=master.puppet.io (don't think this matters)
