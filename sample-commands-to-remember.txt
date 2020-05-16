@@ -38,3 +38,128 @@ nano puppet.conf (LINUX)
 dns_alt_names = master.puppet5.io
 [agent]
 server=master.puppet.io (don't think this matters)
+
+Puppet Checklist
+
+Change /etc/hosts
+
+Disable SELINUX with nano /etc/sysconfig/selinux
+
+Make sure to nmtui connect to the internet
+
+Add port 8140 to firewall-cmd add port tcp/8140
+
+Make sure to do:
+	yum -y install ntp ntpdate
+	sudo ntpdate 0.centos.pool.ntp.org
+
+Change the puppet.conf to
+
+dns_alt_names= master.puppet.io for the [main]
+
+then for the [agent]
+type in server=master.puppet.io
+
+---------------------------------------------------------------------
+HISTORY
+ 1  nano /etc/sysconfig/selinux
+    2  clear
+    3  reboot
+    4  nmtui
+    5  clear
+    6  ping 8.8.8.8
+    7  ifconfig
+    8  ping 192.168.137.150
+    9  nano /etc/hosts
+   10  ping client.puppet5.io
+   11  clear
+   12  ifconfig
+   13  ping client.puppet5.io
+   14  yum -y install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+   15  cat /etc/yum.repos.d/
+   16  ls /etc/yum.repos.d/
+   17  ll
+   18  yum -y install puppet-server
+   19  nano /etc/puppet/puppet.conf
+   20  sudo -u puppet puppet master --no-daemonize --verbose
+   21  systemctl start puppetmaster
+   22  systemctl enable puppetmaster
+   23  systemctl start puppetserver
+   24  systemctl status puppetserver
+   25  systemctl status puppet-server
+   26  history
+   27  systemctl status puppet-server
+   28  systemctl status puppetmaster
+   29  locate puppet
+   30  systemctl start puppetserver
+   31  systemctl start puppet-server
+   32  history
+   33  yum -y install puppet-server
+   34  systemctl status puppet-server-3.8.7-1
+   35  puppet resource service
+   36  yum -y install ntp ntpdate
+   37  sudo ntpdate 0.centos.pool.ntp.org
+   38  sudo systemctl start ntpd
+   39  sudo systemctl enable ntpd
+   40  ping client.puppet5.io
+   41  nano /etc/sysconfig/puppetserver
+   42  cd /etc/sysconfig/
+   43  ls
+   44  firewall-cmd --add-port=8140/tcp --permanent
+   45  firewall-cmd --reload
+   46  yum install -y puppet-server
+   47  systemctl status puppetmaster.service
+   48  systemctl status puppet
+   49  systemctl start puppet
+   50  systemctl status puppet
+   51  systemctl status puppet -l
+   52  systemctl stop puppet
+   53  systemctl status puppet
+   54  systemctl status puppetmaster
+   55  puppet resource service puppetmaster ensure=running enable=true
+   56  lsof -i tcp:8140
+   57  nano /etc/puppet/puppet.conf p
+   58  nano /etc/puppet/puppet.conf
+   59  ping client.puppet5.io
+   60  shutdown -r now
+   61  systemctl status puppetmaster
+   62  lsof -i tcp:8140
+   63  sestatus
+   64  puppet --version
+   65  puppet master --version
+   66  puppet agent --version
+   67  ping client.puppet5.io
+   68  puppet cert list
+   69  nano /etc/puppet/puppet.conf
+   70  systemctl restart puppet
+   71  systemctl restart puppetmaster
+   72  systemctl status puppet
+   73  systemctl status puppetmaster
+   74  nano /etc/hosts
+   75  systemctl status puppetmaster
+   76  puppet cert list
+   77  puppet cert sign win-4n1j8g55s0v.mshome.net
+   78  systemctl start puppet
+   79  systemctl enable puppet
+   80  puppet agent --fingerprint
+   81  puppet cert list --all
+   82  cd /etc/puppet/manifests/
+   83  ls
+   84  nano site.pp
+   85  ls
+   86  cd /etc/puppet/modules/
+   87  ls
+   88  cd /etc/puppetla
+   89  cd /etc/
+   90  ls
+   91  cd /etc/puppet/modules/
+   92  puppet module install puppetlabs/windows
+   93  cd /etc/puppet/environments/
+   94  ls
+   95  cd ..
+   96  ls
+   97  cd manifests/
+   98  ls
+   99  nano site.pp
+  100  nano /etc/puppet/puppet.conf
+  101  history
